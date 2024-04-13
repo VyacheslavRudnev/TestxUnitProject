@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace TestxUnitProject;
 
@@ -24,5 +25,12 @@ public static class UserValidation
         throw new NotImplementedException();
     }
 
-    
+    public static bool IsNicknameValid(string nickname)
+    {
+        if (string.IsNullOrWhiteSpace(nickname))
+        {
+            throw new ArgumentException(nameof(nickname));
+        }
+        return !nickname.Any(char.IsDigit);
+    }
 }
